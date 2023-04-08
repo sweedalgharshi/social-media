@@ -5,6 +5,9 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const helmet = require("helmet");
 
+const userRoute = require("./routes/users.routes");
+const authRoute = require("./routes/auth.routes");
+
 dotenv.config();
 
 mongoose.connection.once("open", () => {
@@ -16,6 +19,18 @@ mongoose.connection.on("error", (err) => {
 });
 
 mongoose.connect(process.env.MONGO_URL);
+
+// middleware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
+
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to homepage");
+});
 
 app.listen(8800, () => {
   console.log("Listening on port 8800");
