@@ -1,6 +1,9 @@
 import React from "react";
 import "./rightbar.css";
 
+import { Users } from "../../dummyData.js";
+import Online from "../online/Online";
+
 function Rightbar() {
   return (
     <div className="rightbar">
@@ -14,41 +17,9 @@ function Rightbar() {
         <img src="/assets/ad.png" alt="" className="rightbar-ad" />
         <h4 className="rightbar-title">Online Friends</h4>
         <ul className="rightbar-friend-list">
-          <li className="rightbar-friend">
-            <div className="rightbar-profile-img-container">
-              <img src="/assets/person/3.jpeg" alt="" className="rightbar-profile-img" />
-              <span className="rightbar-online"></span>
-            </div>
-            <span className="rightbar-username">Kelly Wilson</span>
-          </li>
-          <li className="rightbar-friend">
-            <div className="rightbar-profile-img-container">
-              <img src="/assets/person/3.jpeg" alt="" className="rightbar-profile-img" />
-              <span className="rightbar-online"></span>
-            </div>
-            <span className="rightbar-username">Kelly Wilson</span>
-          </li>
-          <li className="rightbar-friend">
-            <div className="rightbar-profile-img-container">
-              <img src="/assets/person/3.jpeg" alt="" className="rightbar-profile-img" />
-              <span className="rightbar-online"></span>
-            </div>
-            <span className="rightbar-username">Kelly Wilson</span>
-          </li>
-          <li className="rightbar-friend">
-            <div className="rightbar-profile-img-container">
-              <img src="/assets/person/3.jpeg" alt="" className="rightbar-profile-img" />
-              <span className="rightbar-online"></span>
-            </div>
-            <span className="rightbar-username">Kelly Wilson</span>
-          </li>
-          <li className="rightbar-friend">
-            <div className="rightbar-profile-img-container">
-              <img src="/assets/person/3.jpeg" alt="" className="rightbar-profile-img" />
-              <span className="rightbar-online"></span>
-            </div>
-            <span className="rightbar-username">Kelly Wilson</span>
-          </li>
+          {Users.map((user) => (
+            <Online user={user} key={user.id} />
+          ))}
         </ul>
       </div>
     </div>
