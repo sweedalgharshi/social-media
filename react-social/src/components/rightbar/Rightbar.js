@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./rightbar.css";
 
 import { Users } from "../../dummyData.js";
 import Online from "../online/Online";
 
-function Rightbar() {
-  return (
-    <div className="rightbar">
-      <div className="rightbar-wrapper">
+function Rightbar({ profile }) {
+  const HomeRightBar = () => {
+    return (
+      <Fragment>
         <div className="birthday-container">
           <img src="/assets/gift.png" className="birthday-img" alt="" />
           <span className="birthday-text">
@@ -21,6 +21,71 @@ function Rightbar() {
             <Online user={user} key={user.id} />
           ))}
         </ul>
+      </Fragment>
+    );
+  };
+
+  const ProfileRightBar = () => {
+    return (
+      <Fragment>
+        <h4 className="rightbar-title">User Information</h4>
+        <div className="rightbar-info">
+          <div className="rightbar-info-item">
+            <span className="rightbar-info-key">City:</span>
+            <span className="rightbar-info-value">New York</span>
+          </div>
+          <div className="rightbar-info-item">
+            <span className="rightbar-info-key">From:</span>
+            <span className="rightbar-info-value">Sweden</span>
+          </div>
+          <div className="rightbar-info-item">
+            <span className="rightbar-info-key">Relationship:</span>
+            <span className="rightbar-info-value">Its Complicated</span>
+          </div>
+        </div>
+        <h4 className="rightbar-title">User friends</h4>
+        <div className="rightbar-followings">
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+          <div className="rightbar-following">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <span className="rightbar-following-name">Alex Corrigan</span>
+          </div>
+        </div>
+      </Fragment>
+    );
+  };
+
+  return (
+    <div className="rightbar">
+      <div className="rightbar-wrapper">
+        <ProfileRightBar />
       </div>
     </div>
   );
