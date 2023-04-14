@@ -26,6 +26,7 @@ function Rightbar({ profile }) {
   };
 
   const ProfileRightBar = () => {
+    const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
       <Fragment>
         <h4 className="rightbar-title">User Information</h4>
@@ -46,35 +47,35 @@ function Rightbar({ profile }) {
         <h4 className="rightbar-title">User friends</h4>
         <div className="rightbar-followings">
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
           <div className="rightbar-following">
-            <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+            <img src={`${PUBLIC_FOLDER}person/1.jpeg`} alt="" className="rightbar-following-img" />
             <span className="rightbar-following-name">Alex Corrigan</span>
           </div>
         </div>

@@ -8,6 +8,7 @@ import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
 
 function Profile() {
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <Fragment>
       <Topbar />
@@ -16,8 +17,8 @@ function Profile() {
         <div className="profile-right">
           <div className="profile-right-top">
             <div className="profile-cover">
-              <img src="/assets/post/3.jpeg" className="profile-cover-img" alt="" />
-              <img src="/assets/person/5.jpeg" className="profile-user-img" alt="" />
+              <img src={`${PUBLIC_FOLDER}post/3.jpeg`} className="profile-cover-img" alt="" />
+              <img src={`${PUBLIC_FOLDER}person/5.jpeg`} className="profile-user-img" alt="" />
             </div>
             <div className="profile-info">
               <h4 className="profile-info-name">Rogue Dusk</h4>
