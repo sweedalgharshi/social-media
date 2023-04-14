@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./post.css";
 
 import { useState } from "react";
 
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../dummyData";
+// import { Users } from "../../dummyData";
+
+import axios from "axios";
+import { format } from "timeago.js";
 
 function Post({ post }) {
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [users, setUsers] = useState({});
 
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -17,17 +21,30 @@ function Post({ post }) {
     setIsLiked(!isLiked);
   };
 
-  const userName = Users.filter((user) => user.id === post?.userId)[0].username;
-  const profilePic = Users.filter((user) => user.id === post?.userId)[0].profilePicture;
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.get(`users/${post.userId}`);
+      setUsers(response.data);
+      console.log(response.data);
+    };
+    fetchUser();
+  }, [post.userId]);
+
+  const userName = users.username;
+  const profilePic = users.profilePicture;
 
   return (
     <div className="post">
       <div className="post-wrapper">
         <div className="post-top">
           <div className="post-top-left">
-            <img src={PUBLIC_FOLDER + profilePic} alt="" className="post-profilePic" />
+            <img
+              src={profilePic || PUBLIC_FOLDER + "person/noAvatar.png"}
+              alt=""
+              className="post-profilePic"
+            />
             <span className="post-username">{userName}</span>
-            <span className="post-date">{post.date}</span>
+            <span className="post-date">{format(post.createdAt)}</span>
           </div>
           <div className="post-top-right">
             <MoreVert />
@@ -35,7 +52,7 @@ function Post({ post }) {
         </div>
         <div className="post-center">
           <span className="post-text">{post.desc ? post.desc : ""}</span>
-          <img src={PUBLIC_FOLDER + post.photo} alt="" className="post-img" />
+          <img src={PUBLIC_FOLDER + post.img} alt="" className="post-img" />
         </div>
         <div className="post-bottom">
           <div className="post-bottom-left">
