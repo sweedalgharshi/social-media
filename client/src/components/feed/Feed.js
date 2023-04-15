@@ -6,20 +6,22 @@ import Post from "../post/Post";
 import axios from "axios";
 // import { Posts } from "../../dummyData";
 
-function Feed() {
+function Feed({ username }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get("posts/timeline/6438e5bf353543198b32a713");
+        const response = username
+          ? await axios.get("/posts/profile/" + username)
+          : await axios.get("posts/timeline/6438e5bf353543198b32a713");
         setPosts(response.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchPost();
-  }, []);
+  }, [username]);
   return (
     <div className="feed">
       <div className="feed-wrapper">
