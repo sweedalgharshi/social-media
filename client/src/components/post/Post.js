@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./post.css";
 
 import { useState } from "react";
@@ -9,15 +9,26 @@ import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
-  const [users, setUsers] = useState({});
+  const [user, setUsers] = useState({});
+  const { user: currentUser } = useContext(AuthContext);
 
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
+
   const handleClick = () => {
+    try {
+      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+    } catch (err) {
+      console.log(err);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -29,24 +40,26 @@ function Post({ post }) {
     };
     fetchUser();
   }, [post.userId]);
-
-  const userName = users.username;
-  const profilePic = users.profilePicture;
+  console.log(user);
 
   return (
     <div className="post">
       <div className="post-wrapper">
         <div className="post-top">
           <div className="post-top-left">
-            <Link to={`profile/${users.username}`}>
+            <Link to={`profile/${user.username}`}>
               <img
-                src={profilePic || PUBLIC_FOLDER + "person/noAvatar.png"}
+                src={
+                  user.profilePicture
+                    ? PUBLIC_FOLDER + user.profilePicture
+                    : PUBLIC_FOLDER + "person/noAvatar.png"
+                }
                 alt=""
                 className="post-profilePic"
               />
             </Link>
 
-            <span className="post-username">{userName}</span>
+            <span className="post-username">{user.username}</span>
             <span className="post-date">{format(post.createdAt)}</span>
           </div>
           <div className="post-top-right">
