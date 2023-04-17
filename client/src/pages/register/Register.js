@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import "./register.css";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -8,6 +9,7 @@ function Register() {
   const username = useRef();
   const password = useRef();
   const passwordAgain = useRef();
+  const navigate = useNavigate();
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ function Register() {
 
       try {
         await axios.post("/auth/register", user);
+        navigate("/login");
       } catch (err) {
         console.log(err);
       }
