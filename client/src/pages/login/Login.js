@@ -37,10 +37,10 @@ function Login() {
               type="password"
               className="login-input"
               required
-              // minLength="6"
+              minLength="6"
               ref={password}
             />
-            <button className="login-btn" disabled={isFetching}>
+            <button type="submit" className="login-btn" disabled={isFetching}>
               {isFetching ? <CircularProgress color="inherit" size="1rem" /> : "Log In"}
             </button>
             <span className="login-forgot">Forgot Password?</span>
