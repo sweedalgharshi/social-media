@@ -40,7 +40,6 @@ function Post({ post }) {
     };
     fetchUser();
   }, [post.userId]);
-  console.log(user);
 
   return (
     <div className="post">

@@ -9,6 +9,9 @@ const userRoute = require("./routes/users.routes");
 const authRoute = require("./routes/auth.routes");
 const postRoute = require("./routes/post.routes");
 
+const multer = require("multer");
+const path = require("path");
+
 dotenv.config();
 
 mongoose.connection.once("open", () => {
@@ -21,10 +24,30 @@ mongoose.connection.on("error", (err) => {
 
 mongoose.connect(process.env.MONGO_URL);
 
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+
 // middleware
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  try {
+    return res.status(200).json("File uploaded Successfully");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
