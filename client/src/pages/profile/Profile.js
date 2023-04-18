@@ -33,12 +33,20 @@ function Profile() {
           <div className="profile-right-top">
             <div className="profile-cover">
               <img
-                src={user.coverPicture || PUBLIC_FOLDER + "person/noCover.png"}
+                src={
+                  user.coverPicture
+                    ? PUBLIC_FOLDER + user.coverPicture
+                    : PUBLIC_FOLDER + "person/noCover.png"
+                }
                 className="profile-cover-img"
                 alt=""
               />
               <img
-                src={user.profilePicture || PUBLIC_FOLDER + "person/noAvatar.png"}
+                src={
+                  user.profilePicture
+                    ? PUBLIC_FOLDER + user.profilePicture
+                    : PUBLIC_FOLDER + "person/noAvatar.png"
+                }
                 className="profile-user-img"
                 alt=""
               />
